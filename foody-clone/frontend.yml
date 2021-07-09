@@ -1,0 +1,54 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  namespace: foody-clone
+spec:
+  selector:
+    matchLabels:
+      app: app-fooday
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: app-fooday
+    spec:
+      containers:
+        - image: fooday:latest
+          imagePullPolicy: Never
+          name: fooday
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+  namespace: foody-clone
+spec:
+  selector:
+    app: app-fooday
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: frontend-ingress
+  namespace: foody-clone
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend-service
+            port:
+              number: 8080

@@ -1,0 +1,6 @@
+resources:
+  - app-namespace.yaml
+  - ./gateway
+  - ./jaeger
+  - ./keycloak
+  - app-ingress.yaml

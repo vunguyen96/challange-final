@@ -1,0 +1,8 @@
+resources:
+  - configuration-server.yml
+  - driver.yml
+  - merchant.yml
+  - order-service.yml
+  - payment-service.yml
+  - frontend.yml
+  

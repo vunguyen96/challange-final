@@ -1,0 +1,3 @@
+resources:
+  - jaeger-all-in-one-template.yml
+  - jaeger-ingress.yaml

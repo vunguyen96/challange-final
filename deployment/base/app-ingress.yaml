@@ -1,0 +1,51 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: foody-clone-ingress
+  namespace: foody-clone
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /api/orders
+        pathType: Prefix
+        backend:
+          service:
+            name: order-service
+            port:
+              number: 8080
+      - path: /api/wallets
+        pathType: Prefix
+        backend:
+          service:
+            name: payment-service
+            port:
+              number: 8080
+      - path: /api/merchants
+        pathType: Prefix
+        backend:
+          service:
+            name: merchant-service
+            port:
+              number: 8080
+      - path: /api/foods
+        pathType: Prefix
+        backend:
+          service:
+            name: merchant-service
+            port:
+              number: 8080
+      - path: /api/drivers
+        pathType: Prefix
+        backend:
+          service:
+            name: driver-service
+            port:
+              number: 8080
+      - path: /api/shipping
+        pathType: Prefix
+        backend:
+          service:
+            name: driver-service
+            port:
+              number: 8080

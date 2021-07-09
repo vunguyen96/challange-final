@@ -1,0 +1,3 @@
+resources:
+  - keycloak.yaml
+  - keycloak-ingress.yaml

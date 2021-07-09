@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: foody-clone-configuration-server
+  name: foody-clone-configuration-server
+  namespace: foody-clone
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: foody-clone-configuration-server
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: foody-clone-configuration-server
+    spec:
+      containers:
+      - image: foody-clone-configuration-server:1.0.0
+        name: foody-clone-configuration-server
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+        resources: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: foody-clone-configuration-server
+  name: foody-clone-configuration-server
+  namespace: foody-clone
+spec:
+  type: ClusterIP
+  ports:
+  - name: "8080"
+    port: 8080
+    targetPort: 8080
+  selector:
+    app: foody-clone-configuration-server
+---
